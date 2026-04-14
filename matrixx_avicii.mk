@@ -12,12 +12,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from avicii device
 $(call inherit-product, device/oneplus/avicii/device.mk)
 
-# Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common Matrixx stuff.
+$(call inherit-product, vendor/matrixx/config/common_full_phone.mk)
 
 TARGET_BOOT_ANIMATION_RES := 1080
 
-PRODUCT_NAME := lineage_avicii
+PRODUCT_NAME := matrixx_avicii
 PRODUCT_DEVICE := avicii
 PRODUCT_MANUFACTURER := OnePlus
 PRODUCT_BRAND := OnePlus
@@ -32,3 +32,18 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceProduct=avicii \
     SystemName=Nord \
     SystemDevice=avicii
+
+# Build
+MATRIXX_MAINTAINER := Kaveer
+TARGET_SUPPORTED_REFRESH_RATES := 60,90
+TARGET_CUSTOM_UDFPS := true
+WITH_GMS := true
+TARGET_INCLUDE_PIXEL_LAUNCHER := true
+WITH_GMS_COMMS_SUITE := true
+WITH_GMS_AICORE := true
+WITH_BCR := true
+$(call soong_config_set,surfaceflinger,frame_rate_category_high,90)
+$(call soong_config_set,surfaceflinger,frame_rate_category_min,60)
+BYPASS_CHARGE_SUPPORTED := true
+HBM_SUPPORTED := false
+HBM_NODE := /sys/class/backlight/panel0-backlight/hbm_mode
